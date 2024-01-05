@@ -1,6 +1,7 @@
 package com.pgsa.credit.application.system.entity
 
 import jakarta.persistence.*
+import java.math.BigDecimal
 
 @Entity
 data class Customer(
@@ -8,9 +9,10 @@ data class Customer(
     @Column(nullable = false) var lastName: String,
     @Column(nullable = false, unique = true) val cpf: String,
     @Column(nullable = false, unique = true) var email: String,
+    @Column(nullable = false) var income:BigDecimal,
     @Column(nullable = false) var password: String,
     @Column(nullable = false) @Embedded var address: Address,
     @Column(nullable = false) @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.REMOVE, CascadeType.PERSIST],
         mappedBy = "customer") var credits: List<Credits> = mutableListOf(),
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long?,
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long?= 0,
 )
