@@ -13,6 +13,6 @@ data class Credits (
     @Column(nullable = false) val dayFirstInstallment: LocalDate,
     @Column(nullable = false) val numberOfInstallment: Int,
     @Enumerated val status: Status,
-    @ManyToOne val customer: Customer?,
+    @ManyToOne var customer: Customer?,
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long?,
 )
